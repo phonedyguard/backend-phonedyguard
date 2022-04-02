@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.data:spring-data-keyvalue:2.6.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-keyvalue/2.6.2/1d667214a136cc9c7d686cef9690d1c77212852a/spring-data-keyvalue-2.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-keyvalue/2.6.2/5cf7c4f15d6e6292cf8b432f12e691f1e42fe10a/spring-data-keyvalue-2.6.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
