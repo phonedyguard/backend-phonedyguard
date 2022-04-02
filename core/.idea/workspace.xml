@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e698f07a-28ab-4112-af32-8b2f6df3495d" name="Changes" comment="# &lt;타입&gt; : &lt;제목&gt; 형식으로 작성하며 제목은 최대 50글자 정도로만 입력&#10;# 제목을 아랫줄에 작성, 제목 끝에 마침표 금지, 무엇을 했는지 명확하게 작성&#10;&#10;################&#10;# 본문(추가 설명)을 아랫줄에 작성&#10;&#10;################&#10;# 꼬릿말(footer)을 아랫줄에 작성 (관련된 이슈 번호 등 추가)&#10;&#10;################&#10;# ✨ feat : 새로운 기능 추가하기&#10;# 🐛 fix : 버그 수정하는 경우&#10;# ♻️ refactor : 코드 리팩토링 하는 경우&#10;# 🔥 remove : 코드/파일 삭제&#10;# 🔧 config : 구성 파일 추가/삭제&#10;# ➕ add : 의존성 추가&#10;# 💄 style : 코드 스타일 변경(코드 포맷팅, 세미 콜론 누락 등 코드 자체의 변경이 없는 경우)&#10;# 💩 bad : 안 좋은 코드 추가&#10;# ⚡️ perf : 성능 개선&#10;# 👷 ci : CI 빌드 시스템 추가/수정&#10;# 📝 docs : 문서 수정하는 경우&#10;################" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="core" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="26KnaqQPLOjdFJKgXMLmkQGYtks" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../backend-readydance/backend-readydance" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="Docker" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
+      <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core\jwt" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="CoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="core.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.phonedygaurd.core.CoreApplication" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e698f07a-28ab-4112-af32-8b2f6df3495d" name="Changes" comment="" />
+      <created>1647181212923</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647181212923</updated>
+      <workItem from="1647181214335" duration="5158000" />
+      <workItem from="1647244648886" duration="1783000" />
+      <workItem from="1647576724718" duration="11738000" />
+      <workItem from="1647709840660" duration="5378000" />
+      <workItem from="1647972897449" duration="2994000" />
+      <workItem from="1648098921801" duration="8908000" />
+      <workItem from="1648181603155" duration="10853000" />
+      <workItem from="1648275681325" duration="247000" />
+      <workItem from="1648299608436" duration="577000" />
+      <workItem from="1648777934389" duration="16062000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.PropertyValueException" package="org.hibernate" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
