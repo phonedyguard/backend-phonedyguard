@@ -4,7 +4,6 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots />
-        <sourceRoots />
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
@@ -12,6 +11,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="core.main" />
           <factory-entry name="entityManagerFactory" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -20,5 +20,9 @@
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
