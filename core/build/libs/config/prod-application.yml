@@ -1,0 +1,63 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
+    username: user
+    password: 5678
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  redis:
+    host: localhost
+    port: 6379
+
+logging:
+  level:
+    root: info
+profile: prod1
+server:
+  port: 8089
+
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHN
+---
+spring:
+  config:
+    activate:
+      on-profile: prod2
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnect=true
+    username: user
+    password: 5678
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  redis:
+    host: localhost
+    port: 6379
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8090
+
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHN
