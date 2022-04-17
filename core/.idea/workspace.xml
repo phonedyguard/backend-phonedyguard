@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e698f07a-28ab-4112-af32-8b2f6df3495d" name="Changes" comment="# &lt;타입&gt; : &lt;제목&gt; 형식으로 작성하며 제목은 최대 50글자 정도로만 입력&#10;# 제목을 아랫줄에 작성, 제목 끝에 마침표 금지, 무엇을 했는지 명확하게 작성&#10;&#10;################&#10;# 본문(추가 설명)을 아랫줄에 작성&#10;&#10;################&#10;# 꼬릿말(footer)을 아랫줄에 작성 (관련된 이슈 번호 등 추가)&#10;&#10;################&#10;# ✨ feat : 새로운 기능 추가하기&#10;# 🐛 fix : 버그 수정하는 경우&#10;# ♻️ refactor : 코드 리팩토링 하는 경우&#10;# 🔥 remove : 코드/파일 삭제&#10;# 🔧 config : 구성 파일 추가/삭제&#10;# ➕ add : 의존성 추가&#10;# 💄 style : 코드 스타일 변경(코드 포맷팅, 세미 콜론 누락 등 코드 자체의 변경이 없는 경우)&#10;# 💩 bad : 안 좋은 코드 추가&#10;# ⚡️ perf : 성능 개선&#10;# 👷 ci : CI 빌드 시스템 추가/수정&#10;# 📝 docs : 문서 수정하는 경우&#10;################">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +249,7 @@
       <workItem from="1649837038750" duration="749000" />
       <workItem from="1649917757366" duration="52000" />
       <workItem from="1649997787182" duration="7755000" />
-      <workItem from="1650188309580" duration="1700000" />
+      <workItem from="1650188309580" duration="2609000" />
     </task>
     <servers />
   </component>
