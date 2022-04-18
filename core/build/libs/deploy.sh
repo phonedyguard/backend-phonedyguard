@@ -45,4 +45,4 @@ do
 done
 echo "> 스위칭을 시도합니다..."
 sleep 10
-/home/ec2-user/app/switch.sh
+/home/ec2-user/backend-phonedyguard/core/build/libs/switch.sh
