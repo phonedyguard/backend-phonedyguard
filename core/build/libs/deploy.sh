@@ -18,14 +18,14 @@ else
 fi
 echo "> $IDLE_PROFILE 배포"
 sudo fuser -k -n tcp $IDLE_PORT
-sudo nohup java -jar core-0.0.1-SNAPSHOT.jar --spring.config.location=file:config/prod-application.yml --spring.profiles.active=$IDLE_PROFILE $
+sudo nohup java -jar core-0.0.1-SNAPSHOT.jar --spring.config.location=file:config/prod-application.yml --spring.profiles.active=$IDLE_PROFILE &
 echo "> $IDLE_PROFILE 10초 후 Health check 시작"
-echo "> curl -s http://localhost:$IDLE_PORT/actuator/health"
+echo "> curl -s http://localhost:$IDLE_PORT/actuator/health "
 sleep 10
 for retry_count in {1..10}
 do
 	response=$(curl -s http://localhost:$IDLE_PORT/actuator/health)
-	up_count=$(echo $reponse | grep 'UP' | wc -l)
+	up_count=$(echo $response | grep 'UP' | wc -l)
 	if [ $up_count -ge 1 ]
 	then
 		echo "> Health check 성공"
@@ -45,4 +45,4 @@ do
 done
 echo "> 스위칭을 시도합니다..."
 sleep 10
-/home/ec2-user/backend-phonedyguard/core/build/libs/switch.sh
+sh /home/ec2-user/backend-phonedyguard/core/build/libs/switch.sh
