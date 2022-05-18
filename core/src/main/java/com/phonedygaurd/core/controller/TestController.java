@@ -21,8 +21,9 @@ public class TestController {
     }
 
     @GetMapping("/test3")
-    public ResponseEntity<String> test3(@RequestParam String testStr1, @RequestParam String testStr2){
+    public ResponseEntity<String> test3(@RequestParam String testStr1, @RequestParam String testStr2) {
         return new ResponseEntity<String>(testStr1 + testStr2, HttpStatus.OK);
+    }
 }
 
 
