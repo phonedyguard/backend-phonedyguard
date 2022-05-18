@@ -1,22 +1,22 @@
 package com.phonedygaurd.core.controller;
 
 import com.phonedygaurd.core.v1.dto.request.TestDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 public class TestController {
     @GetMapping("/test1")
     public ResponseEntity test1(){
         return new ResponseEntity<String>("test1 Success", HttpStatus.OK);
     }
 
-    @GetMapping("/test2")
+    @PostMapping("/test2")
     public ResponseEntity<TestDto> test2(@RequestBody TestDto testDto){
+        log.info(testDto.getTestStr() + testDto.getTestStr2());
         return new ResponseEntity<TestDto>(testDto, HttpStatus.OK);
     }
 
