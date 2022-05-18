@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TestDto {
-    private int testInt;
     private String testStr;
+    private String testStr2;
 }
