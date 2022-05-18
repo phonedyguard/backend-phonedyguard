@@ -19,6 +19,10 @@ public class TestController {
     public ResponseEntity<TestDto> test2(@RequestBody TestDto testDto){
         return new ResponseEntity<TestDto>(testDto, HttpStatus.OK);
     }
+
+    @GetMapping("/test3")
+    public ResponseEntity<String> test3(@RequestParam String testStr1, @RequestParam String testStr2){
+        return new ResponseEntity<String>(testStr1 + testStr2, HttpStatus.OK);
 }
 
 
