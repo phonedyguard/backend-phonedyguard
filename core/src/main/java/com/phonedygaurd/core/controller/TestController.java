@@ -21,7 +21,8 @@ public class TestController {
     }
 
     @GetMapping("/test3")
-    public ResponseEntity<TestDto> test3(@RequestBody TestDto testDto) {
+    public ResponseEntity<TestDto> test3() {
+        TestDto testDto = new TestDto();
         testDto.setTestStr("hi");
         testDto.setTestStr2("hi2");
         return new ResponseEntity<TestDto>(testDto, HttpStatus.OK);
