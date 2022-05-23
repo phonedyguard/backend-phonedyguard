@@ -24,16 +24,7 @@ public class TestController {
     public ResponseEntity<String> test3(@RequestParam String testStr1, @RequestParam String testStr2) {
         return new ResponseEntity<String>(testStr1 + testStr2, HttpStatus.OK);
     }
-    // Test 주석
-    // Test 주석2
-    // Test 주석3
-    // Test 주석4
-    // Test 주석5
-    // Test 주석6
-    // Test 주석7
-    // Test 주석8
-    // Test 주석9
-    // Test 주석10
+
 }
 
 

@@ -9,6 +9,7 @@ import com.phonedygaurd.core.v1.dto.request.UserRequestDto;
 import com.phonedygaurd.core.v1.repository.UserRepository;
 import com.phonedygaurd.core.v1.dto.response.UserResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-//@Slf4j
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -82,6 +83,7 @@ public class UserService {
 
         // 2. Access Token 에서 User email 을 가져옵니다.
         Authentication authentication = jwtTokenProvider.getAuthentication(reissue.getAccessToken());
+        log.info("token's id: " + authentication.getName());
 
         // 3. Redis 에서 User email 을 기반으로 저장된 Refresh Token 값을 가져옵니다.
         String refreshToken = (String)redisTemplate.opsForValue().get("RT:" + authentication.getName());
