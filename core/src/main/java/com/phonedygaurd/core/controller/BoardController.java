@@ -5,7 +5,9 @@ import com.phonedygaurd.core.v1.repository.BoardRepository;
 import com.phonedygaurd.core.v1.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,15 +25,13 @@ public class BoardController {
     private final BoardRepository boardRepository;
 
     @GetMapping(value = "/board")
-    public String getMappingTest(@RequestParam String content, @RequestParam String title) {
-        System.out.println(content);
-        System.out.println(title);
-        BoardDto boardDto = BoardDto.builder()
-                .content(content)
-                .title(title)
+    public ResponseEntity<?> getMappingTest(@RequestBody BoardDto boardDto) {
+        boardDto = BoardDto.builder()
+                .content(boardDto.getContent())
+                .title(boardDto.getTitle())
                 .build();
-        log.info("test: " + boardDto);
+        log.info("boardDto: " + boardDto);
         boardService.savePost(boardDto);
-        return "X : " + content + ", Y : " + title;
+        return ResponseEntity.ok(boardDto);
     }
 }
