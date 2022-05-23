@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e698f07a-28ab-4112-af32-8b2f6df3495d" name="Changes" comment="# &lt;타입&gt; : &lt;제목&gt; 형식으로 작성하며 제목은 최대 50글자 정도로만 입력&#10;# 제목을 아랫줄에 작성, 제목 끝에 마침표 금지, 무엇을 했는지 명확하게 작성&#10;&#10;################&#10;# 본문(추가 설명)을 아랫줄에 작성&#10;&#10;################&#10;# 꼬릿말(footer)을 아랫줄에 작성 (관련된 이슈 번호 등 추가)&#10;&#10;################&#10;# ✨ feat : 새로운 기능 추가하기&#10;# 🐛 fix : 버그 수정하는 경우&#10;# ♻️ refactor : 코드 리팩토링 하는 경우&#10;# 🔥 remove : 코드/파일 삭제&#10;# 🔧 config : 구성 파일 추가/삭제&#10;# ➕ add : 의존성 추가&#10;# 💄 style : 코드 스타일 변경(코드 포맷팅, 세미 콜론 누락 등 코드 자체의 변경이 없는 경우)&#10;# 💩 bad : 안 좋은 코드 추가&#10;# ⚡️ perf : 성능 개선&#10;# 👷 ci : CI 빌드 시스템 추가/수정&#10;# 📝 docs : 문서 수정하는 경우&#10;################">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/controller/BoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/entity/BoardEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/dto/request/BoardDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/repository/BoardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +75,13 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="26KnaqQPLOjdFJKgXMLmkQGYtks" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -101,6 +103,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.phonedygaurd.core.v1.repository" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
     </key>
@@ -109,8 +114,21 @@
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core\jwt" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.phonedygaurd.core.v1.service" />
+      <recent name="com.phonedygaurd.core.v1.repository" />
+      <recent name="com.phonedygaurd.core.entity" />
+      <recent name="com.phonedygaurd.core.v1.dto.request" />
+      <recent name="com.phonedygaurd.core.controller" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CoreApplication (1)">
+  <component name="RunManager" selected="Gradle.core [bootJar]">
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CoreApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -213,16 +231,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.core-0.0.1-SNAPSHOT.jar (1)" />
-        <item itemvalue="JAR Application.core-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="Gradle.core [bootJar]" />
         <item itemvalue="Gradle.core [jar]" />
         <item itemvalue="Gradle.CoreApplicationTests" />
@@ -289,7 +299,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
