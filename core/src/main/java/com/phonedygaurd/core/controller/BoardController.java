@@ -6,10 +6,7 @@ import com.phonedygaurd.core.v1.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -24,7 +21,7 @@ public class BoardController {
     @Autowired
     private final BoardRepository boardRepository;
 
-    @GetMapping(value = "/board")
+    @PostMapping(value = "/board")
     public ResponseEntity<?> getMappingTest(@RequestBody BoardDto boardDto) {
         boardDto = BoardDto.builder()
                 .content(boardDto.getContent())
