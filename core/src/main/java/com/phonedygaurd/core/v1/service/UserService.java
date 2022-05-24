@@ -35,6 +35,10 @@ public class UserService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final RedisTemplate redisTemplate;
 
+//    public ResponseEntity<?> getUser(){
+//
+//    }
+
     public ResponseEntity<?> signUp(UserRequestDto.SignUp signUp) {
         if (userRepository.existsByEmail(signUp.getEmail())) {
             return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
@@ -43,6 +47,9 @@ public class UserService {
         Users user = Users.builder()
                 .email(signUp.getEmail())
                 .password(passwordEncoder.encode(signUp.getPassword()))
+                .name(signUp.getName())
+                .sex(signUp.getSex())
+                .phone(signUp.getPhone())
                 .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                 .build();
         userRepository.save(user);
@@ -52,9 +59,9 @@ public class UserService {
 
     public ResponseEntity<?> login(UserRequestDto.Login login) {
 
-//        if (usersRepository.findByEmail(login.getEmail()).orElse(null) == null) {
-//            return response.fail("해당하는 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
-//        }
+        if (userRepository.findByEmail(login.getEmail()).orElse(null) == null) {
+            return response.fail("해당하는 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
+        }
 
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
         // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
