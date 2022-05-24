@@ -1,0 +1,111 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.4)
+
+2022-04-18 13:25:33.500  INFO 11552 --- [           main] com.phonedygaurd.core.CoreApplication    : Starting CoreApplication using Java 11.0.10 on DESKTOP-JU6V6RT with PID 11552 (C:\Users\jin\GitHub\backend-phonedyguard\core\build\libs\core-0.0.1-SNAPSHOT.jar started by jin in C:\Users\jin\GitHub\backend-phonedyguard\core\build\libs)
+2022-04-18 13:25:33.504  INFO 11552 --- [           main] com.phonedygaurd.core.CoreApplication    : The following 1 profile is active: "prod2"
+2022-04-18 13:25:34.725  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-04-18 13:25:34.726  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-04-18 13:25:34.751  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2022-04-18 13:25:35.226  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-04-18 13:25:35.229  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-18 13:25:35.461  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 226 ms. Found 1 JPA repository interfaces.
+2022-04-18 13:25:35.469  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-04-18 13:25:35.469  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-04-18 13:25:35.479  INFO 11552 --- [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.phonedygaurd.core.v1.repository.UserRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2022-04-18 13:25:35.480  INFO 11552 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2022-04-18 13:25:36.929  INFO 11552 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8090 (http)
+2022-04-18 13:25:36.943  INFO 11552 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-18 13:25:36.944  INFO 11552 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-18 13:25:37.029  INFO 11552 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-18 13:25:37.030  INFO 11552 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3422 ms
+2022-04-18 13:25:37.495  INFO 11552 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-18 13:25:37.588  INFO 11552 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-18 13:25:37.918  INFO 11552 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-18 13:25:38.084  INFO 11552 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-18 13:25:38.432  INFO 11552 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-18 13:25:38.449  INFO 11552 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022-04-18 13:25:39.394  INFO 11552 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-18 13:25:39.416  INFO 11552 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-18 13:25:40.584  WARN 11552 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-18 13:25:40.878  INFO 11552 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+2022-04-18 13:25:41.255  WARN 11552 --- [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-04-18 13:25:41.558  INFO 11552 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-04-18 13:25:41.615  INFO 11552 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8090 (http) with context path ''
+2022-04-18 13:25:41.633  INFO 11552 --- [           main] com.phonedygaurd.core.CoreApplication    : Started CoreApplication in 8.916 seconds (JVM running for 9.772)
+2022-04-18 13:25:41.994  INFO 11552 --- [nio-8090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-18 13:25:41.994  INFO 11552 --- [nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-18 13:25:41.995  INFO 11552 --- [nio-8090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-04-18 19:12:24.331  INFO 11552 --- [ioEventLoop-6-1] io.lettuce.core.protocol.CommandHandler  : null Unexpected exception during request: java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다
+
+java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다
+	at java.base/sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:276) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:233) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:223) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:358) ~[na:na]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-04-18 19:12:24.574  INFO 11552 --- [xecutorLoop-1-2] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /3.36.109.233:6379
+2022-04-18 19:12:25.696  INFO 11552 --- [ioEventLoop-6-2] i.l.core.protocol.ReconnectionHandler    : Reconnected to 3.36.109.233:6379
+2022-04-18 19:12:31.366  WARN 11552 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m51s968ms799?s700ns).
+2022-04-19 00:35:08.500  INFO 11552 --- [ioEventLoop-6-2] io.lettuce.core.protocol.CommandHandler  : null Unexpected exception during request: java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다
+
+java.io.IOException: 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다
+	at java.base/sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:276) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:233) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:223) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:358) ~[na:na]
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:258) ~[netty-buffer-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1132) ~[netty-buffer-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:350) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:151) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-04-19 00:35:08.682  INFO 11552 --- [xecutorLoop-1-3] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /3.36.109.233:6379
+2022-04-19 00:35:08.806  WARN 11552 --- [ioEventLoop-6-3] i.l.core.protocol.ConnectionWatchdog     : Cannot reconnect to [3.36.109.233:6379]: No route to host: no further information: /3.36.109.233:6379
+
+io.netty.channel.AbstractChannel$AnnotatedNoRouteToHostException: No route to host: no further information: /3.36.109.233:6379
+Caused by: java.net.NoRouteToHostException: No route to host: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496) ~[netty-transport-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.74.Final.jar!/:4.1.74.Final]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2022-04-19 00:35:14.447  INFO 11552 --- [xecutorLoop-1-6] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was 3.36.109.233:6379
+2022-04-19 00:35:14.916  INFO 11552 --- [ioEventLoop-6-6] i.l.core.protocol.ReconnectionHandler    : Reconnected to 3.36.109.233:6379
+2022-04-19 00:35:29.332  WARN 11552 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h46m2s470ms443?s500ns).

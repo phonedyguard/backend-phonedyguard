@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/core.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/core.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core.test.iml" afterDir="false" />
@@ -27,6 +28,13 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/entity/Users.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/dto/request/UserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/dto/request/UserRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/service/UserService.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/dto/request/TestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/phonedygaurd/core/v1/dto/request/TestDto.java" afterDir="false" />
+>>>>>>> develop
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +95,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="26KnaqQPLOjdFJKgXMLmkQGYtks" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -102,20 +113,33 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/core (1)/core" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.19651347" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.phonedygaurd.core.v1.repository" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\build\libs" />
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core" />
       <recent name="C:\Users\jin\GitHub\backend-phonedyguard\core\src\main\java\com\phonedygaurd\core\jwt" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.phonedygaurd.core.v1.service" />
+      <recent name="com.phonedygaurd.core.v1.repository" />
+      <recent name="com.phonedygaurd.core.entity" />
+      <recent name="com.phonedygaurd.core.v1.dto.request" />
+      <recent name="com.phonedygaurd.core.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.CoreApplication (1)">
@@ -229,8 +253,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.core-0.0.1-SNAPSHOT.jar (1)" />
-        <item itemvalue="JAR Application.core-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="Gradle.core [bootJar]" />
         <item itemvalue="Gradle.core [jar]" />
         <item itemvalue="Gradle.CoreApplicationTests" />
@@ -267,6 +289,21 @@
       <workItem from="1649837038750" duration="749000" />
       <workItem from="1649917757366" duration="52000" />
       <workItem from="1649997787182" duration="7755000" />
+      <workItem from="1650188309580" duration="3674000" />
+      <workItem from="1650241284129" duration="9890000" />
+      <workItem from="1650543594351" duration="571000" />
+      <workItem from="1651209753739" duration="189000" />
+      <workItem from="1652089596331" duration="583000" />
+      <workItem from="1652332702511" duration="2262000" />
+      <workItem from="1652415655673" duration="4377000" />
+      <workItem from="1652510339156" duration="1893000" />
+      <workItem from="1652661071465" duration="1650000" />
+      <workItem from="1652855797709" duration="888000" />
+      <workItem from="1653029621146" duration="5203000" />
+      <workItem from="1653125714682" duration="6731000" />
+      <workItem from="1653208966949" duration="3246000" />
+      <workItem from="1653287805577" duration="4118000" />
+      <workItem from="1653372317996" duration="865000" />
     </task>
     <servers />
   </component>
@@ -294,5 +331,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
