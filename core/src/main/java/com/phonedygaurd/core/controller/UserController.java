@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 @RestController
 public class UserController {
 
@@ -27,7 +27,12 @@ public class UserController {
     @Autowired
     private final UserRepository userRepository;
 
-    @PostMapping("/sign-up")
+//    @GetMapping("")
+//    public ResponseEntity<?> getUser(@RequestHeader("")){
+//
+//    }
+
+    @PostMapping("")
     public ResponseEntity<?> signUp(@RequestBody UserRequestDto.SignUp signUp, Errors errors) {
         // validation check
         log.info("sign up: " + signUp);
@@ -37,7 +42,7 @@ public class UserController {
         return userService.signUp(signUp);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/events")
     public ResponseEntity<?> login(@RequestBody UserRequestDto.Login login, Errors errors) {
         // validation check
         if (errors.hasErrors()) {
@@ -46,7 +51,7 @@ public class UserController {
         return userService.login(login);
     }
 
-    @PostMapping("/reissue")
+    @PostMapping("/tokens")
     public ResponseEntity<?> reissue(@RequestBody UserRequestDto.Reissue reissue, Errors errors) {
         // validation check
         if (errors.hasErrors()) {
@@ -56,7 +61,7 @@ public class UserController {
         return userService.reissue(reissue);
     }
 
-    @PostMapping("/logout")
+    @DeleteMapping("/events")
     public ResponseEntity<?> logout(@RequestBody UserRequestDto.Logout logout, Errors errors) {
         // validation check
         if (errors.hasErrors()) {

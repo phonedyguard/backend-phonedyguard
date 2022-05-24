@@ -27,6 +27,12 @@ public class Users extends BaseTime implements UserDetails {
 
     private String password;
 
+    private String name;
+
+    private String sex;
+
+    private String phone;
+
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)
