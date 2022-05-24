@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @Slf4j
 public class TestController {
@@ -22,10 +25,17 @@ public class TestController {
 
     @GetMapping("/test3")
     public ResponseEntity<TestDto> test3() {
-        TestDto testDto = new TestDto();
-        testDto.setTestStr("hi");
-        testDto.setTestStr2("hi2");
+        TestDto testDto = new TestDto("hi", "hi2");
         return new ResponseEntity<TestDto>(testDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/test4")
+    public ResponseEntity<List> test4() {
+        List<TestDto> testDtoList = new ArrayList<>();
+        testDtoList.add(new TestDto("aa", "aaa"));
+        testDtoList.add(new TestDto("bb", "bbb"));
+        testDtoList.add(new TestDto("cc", "ccc"));
+        return new ResponseEntity<List>(testDtoList, HttpStatus.OK);
     }
 
 }
