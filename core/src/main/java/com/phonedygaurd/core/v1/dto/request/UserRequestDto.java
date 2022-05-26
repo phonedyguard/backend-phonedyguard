@@ -51,6 +51,14 @@ public class UserRequestDto {
 
     @Getter
     @Setter
+    public static class updateUser{
+        private String name;
+        private String sex;
+        private String phone;
+    }
+
+    @Getter
+    @Setter
     public static class Reissue {
         @NotEmpty(message = "accessToken 을 입력해주세요.")
         private String accessToken;
