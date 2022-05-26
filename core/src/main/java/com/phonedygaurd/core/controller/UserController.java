@@ -1,6 +1,7 @@
 package com.phonedygaurd.core.controller;
 
 
+
 import com.phonedygaurd.core.jwt.JwtTokenProvider;
 import com.phonedygaurd.core.lib.Helper;
 import com.phonedygaurd.core.v1.dto.Response;
@@ -11,8 +12,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,10 +31,10 @@ public class UserController {
     @Autowired
     private final UserRepository userRepository;
 
-//    @GetMapping("")
-//    public ResponseEntity<?> getUser(@RequestHeader("")){
-//
-//    }
+    @GetMapping("")
+    public ResponseEntity<?> getUser(HttpServletRequest request){
+        return userService.getUser(request);
+    }
 
     @PostMapping("")
     public ResponseEntity<?> signUp(@RequestBody UserRequestDto.SignUp signUp, Errors errors) {
@@ -40,6 +44,16 @@ public class UserController {
             return response.invalidFields(Helper.refineErrors(errors));
         }
         return userService.signUp(signUp);
+    }
+
+    @PutMapping("")
+    public ResponseEntity<?> updateUser(HttpServletRequest request, @RequestBody UserRequestDto.updateUser updateUser){
+        return userService.updateUser(request, updateUser);
+    }
+
+    @DeleteMapping("")
+    public ResponseEntity<?> deleteUser(HttpServletRequest request){
+        return userService.deleteUser(request);
     }
 
     @PostMapping("/events")
@@ -77,7 +91,8 @@ public class UserController {
     }
 
     @GetMapping("/userTest")
-    public ResponseEntity<?> userTest() {
+    public ResponseEntity<?> userTest(HttpServletRequest request) {
+
         log.info("ROLE_USER TEST");
         return response.success();
     }

@@ -2,6 +2,7 @@ package com.phonedygaurd.core.v1.service;
 
 import com.phonedygaurd.core.entity.Users;
 import com.phonedygaurd.core.enums.Authority;
+import com.phonedygaurd.core.jwt.JwtAuthenticationFilter;
 import com.phonedygaurd.core.jwt.JwtTokenProvider;
 import com.phonedygaurd.core.security.SecurityUtil;
 import com.phonedygaurd.core.v1.dto.Response;
@@ -21,6 +22,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
@@ -36,9 +39,64 @@ public class UserService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final RedisTemplate redisTemplate;
 
-//    public ResponseEntity<?> getUser(){
-//
-//    }
+    public ResponseEntity<?> getUser(HttpServletRequest request){
+        // Header에서 token 값 추출
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        // 아이디로 user 정보 DB에서 추출
+        Users user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
+
+        UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .sex(user.getSex())
+                .phone(user.getPhone())
+                .build();
+        return response.success(userInfo,"회원 정보 조회", HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> updateUser(HttpServletRequest request, UserRequestDto.updateUser updateUser){
+        // Header에서 token 값 추출
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+
+        Users user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
+
+        user.setName(updateUser.getName());
+        user.setSex(updateUser.getSex());
+        user.setPhone(updateUser.getPhone());
+        userRepository.save(user);
+        return response.success("회원 정보 수정");
+    }
+
+    public ResponseEntity<?> deleteUser(HttpServletRequest request){
+        // Header에서 token 값 추출
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+
+        Users user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
+
+        userRepository.delete(user);
+        return response.success("회원 정보 삭제");
+    }
 
     public ResponseEntity<?> signUp(UserRequestDto.SignUp signUp) {
         if (userRepository.existsByEmail(signUp.getEmail())) {
