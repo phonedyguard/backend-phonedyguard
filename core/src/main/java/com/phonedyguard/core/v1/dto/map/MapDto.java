@@ -8,13 +8,13 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class MapDto {
-    //    private String id;
+    private long id;
     private double latitude;
     private double longitude;
 
     public MapEntity toEntity(){
         MapEntity map_Entity = MapEntity.builder()
-//                .id(id)
+                .id(id)
                 .latitude(latitude)
                 .longitude(longitude)
                 .build();
@@ -22,8 +22,8 @@ public class MapDto {
     }
 
     @Builder
-    public MapDto(double latitude, double longitude) {
-//        this.id = id;
+    public MapDto(long id, double latitude, double longitude) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
     }
