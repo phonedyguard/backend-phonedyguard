@@ -1,10 +1,12 @@
 package com.phonedyguard.core.v1.service;
 
 import com.phonedyguard.core.entity.MapEntity;
+import com.phonedyguard.core.entity.MapSafeEntity;
 import com.phonedyguard.core.v1.dto.Response;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.MapSafeDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
+import com.phonedyguard.core.v1.repository.MapSafeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +18,18 @@ import java.util.List;
 @Service
 public class MapService {
     private final MapRepository mapRepository;
+    private final MapSafeRepository mapSafeRepository;
 
     @Transactional
     public List<MapSafeDto> getMaplist() {
-        List<MapEntity> mapEntities = mapRepository.findAll();
+        List<MapSafeEntity> mapSafeEntities = mapSafeRepository.findAll();
         List<MapSafeDto> mapSafeDtoList = new ArrayList<>();
 
-        for ( MapEntity mapEntity : mapEntities) {
+        for ( MapSafeEntity mapSafeEntity : mapSafeEntities) {
             MapSafeDto mapSafeDTO = MapSafeDto.builder()
-                    .latitude(mapEntity.getLatitude())
-                    .longitude(mapEntity.getLongitude())
-                    .id(mapEntity.getId())
+                    .safe_latitude(mapSafeEntity.getSafe_latitude())
+                    .safe_longitude(mapSafeEntity.getSafe_longitude())
                     .build();
-
             mapSafeDtoList.add(mapSafeDTO);
         }
         return mapSafeDtoList;
@@ -36,7 +37,7 @@ public class MapService {
 
     @Transactional
     public Long saveSaferoutes(MapSafeDto mapSafeDto) {
-        return mapRepository.save(mapSafeDto.toEntity()).getId();
+        return mapSafeRepository.save(mapSafeDto.toEntity()).getId();
     }
 
 

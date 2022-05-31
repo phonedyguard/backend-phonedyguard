@@ -1,6 +1,7 @@
 package com.phonedyguard.core.v1.dto.map;
 
 import com.phonedyguard.core.entity.MapEntity;
+import com.phonedyguard.core.entity.MapSafeEntity;
 import lombok.*;
 
 @Getter
@@ -9,22 +10,22 @@ import lombok.*;
 @NoArgsConstructor
 public class MapSafeDto {
     private long id;
-    private double latitude;
-    private double longitude;
+    private double safe_latitude;
+    private double safe_longitude;
 
-    public MapEntity toEntity(){
-        MapEntity map_Entity = MapEntity.builder()
+    public MapSafeEntity toEntity(){
+        MapSafeEntity mapSafeEntity = MapSafeEntity.builder()
                 .id(id)
-                .latitude(latitude)
-                .longitude(longitude)
+                .safe_latitude(safe_latitude)
+                .safe_longitude(safe_longitude)
                 .build();
-        return map_Entity;
+        return mapSafeEntity;
     }
 
     @Builder
-    public MapSafeDto(long id, double latitude, double longitude) {
+    public MapSafeDto(long id, double safe_latitude, double safe_longitude) {
         this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.safe_latitude = safe_latitude;
+        this.safe_longitude = safe_longitude;
     }
 }
