@@ -3,6 +3,7 @@ package com.phonedyguard.core.controller;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.MapSafeDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
+import com.phonedyguard.core.v1.repository.MapSafeRepository;
 import com.phonedyguard.core.v1.service.MapService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,18 @@ import java.util.List;
 public class MapController {
     private final MapService mapService;
 
-    public MapController(MapService mapService, MapRepository mapRepository) {
+
+    public MapController(MapService mapService, MapRepository mapRepository, MapSafeRepository mapSafeRepository) {
         this.mapService = mapService;
         this.mapRepository = mapRepository;
+        this.mapSafeRepository = mapSafeRepository;
     }
 
     @Autowired
     private final MapRepository mapRepository;
+
+    @Autowired
+    private final MapSafeRepository mapSafeRepository;
 
 
     @PostMapping(value = "/maps/indices")
@@ -43,8 +49,8 @@ public class MapController {
     @PostMapping(value = "/maps/routes")
     public ResponseEntity<?> saveroutes(@RequestBody MapSafeDto mapsafeDto) {
         mapsafeDto = MapSafeDto.builder()
-                .latitude(mapsafeDto.getLatitude())
-                .longitude(mapsafeDto.getLongitude())
+                .safe_latitude(mapsafeDto.getSafe_latitude())
+                .safe_longitude(mapsafeDto.getSafe_longitude())
                 .build();
         log.info("test: " + mapsafeDto);
         mapService.saveSaferoutes(mapsafeDto);
