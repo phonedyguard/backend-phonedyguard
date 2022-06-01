@@ -39,7 +39,7 @@ public class MapController {
                 .longitude(mapDto.getLongitude())
                 .build();
         log.info("test: " + mapDto);
-        mapService.savePosition(mapDto);
+//        mapService.savePosition(mapDto);
         return ResponseEntity.ok(mapDto);
     }
 
