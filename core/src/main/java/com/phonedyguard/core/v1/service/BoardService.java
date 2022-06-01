@@ -50,17 +50,41 @@ public class BoardService {
     }
 
     //게시판 상세조회
-    @Transactional
-    public BoardPostDto getPost(Long number){
-        Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(number);
-        BoardEntity boardEntity = boardEntityWrapper.get();
 
-        BoardPostDto boardPostDto = BoardPostDto.builder()
-                .email(boardEntity.getEmail())
-                .title(boardEntity.getTitle())
-                .content(boardEntity.getContent())
-                .build();
-        return boardPostDto;
+    @Transactional
+    public BoardPostDto getPost(HttpServletRequest request, Long number){
+        Optional<BoardEntity> boardEntity = boardRepository.findById(number);
+        BoardEntity boardPost = boardEntity.get();
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            System.out.println("토큰 실패");
+        }
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        String email = authentication.getName();
+
+        String my_email = boardPost.getEmail();
+
+        if (email.equals(my_email)){
+            BoardPostDto boardPostDto = BoardPostDto.builder()
+                    .email(boardPost.getEmail())
+                    .title(boardPost.getTitle())
+                    .content(boardPost.getContent())
+                    .check("W")
+                    .build();
+            return boardPostDto;
+        }
+        else{
+            BoardPostDto boardPostDto = BoardPostDto.builder()
+                    .email(boardPost.getEmail())
+                    .title(boardPost.getTitle())
+                    .content(boardPost.getContent())
+                    .check("R")
+                    .build();
+            return boardPostDto;
+        }
+
     }
 
     //게시판 저장
@@ -87,7 +111,7 @@ public class BoardService {
 
     //게시판 삭제
     @Transactional
-    public ResponseEntity<?> deleteBoard(HttpServletRequest request, BoardUpdateDto boardUpdateDto, long number){
+    public ResponseEntity<?> deleteBoard(HttpServletRequest request, BoardDto boardDto, long number){
         // Header에서 token 값 추출
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
         if (!jwtTokenProvider.validateToken(token))
@@ -100,9 +124,10 @@ public class BoardService {
         String email = authentication.getName();
 
         Optional<BoardEntity> boardEntity = boardRepository.findById(number);
-        BoardEntity boardUpdate = boardEntity.get();
-        String my_email = boardUpdate.getEmail();
+        BoardEntity boardDelete = boardEntity.get();
+        String my_email = boardDelete.getEmail();
         log.info(email + " : " + my_email);
+
         if (email.equals(my_email)){
             boardRepository.deleteById(number);
             return response.success("게시판 삭제");
@@ -113,7 +138,7 @@ public class BoardService {
 
     }
 
-    //게시판 수절
+    //게시판 수정
     @Transactional
     public ResponseEntity<?> updateBoard(HttpServletRequest request, BoardUpdateDto boardUpdateDto, long number){
         // Header에서 token 값 추출

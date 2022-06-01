@@ -19,14 +19,18 @@ public class MapEntity {
     private long id;
 
     @Column(length = 100, nullable = false)
+    private String email;
+
+    @Column(length = 100, nullable = false)
     private double latitude;
 
     @Column(length = 100, nullable = false)
     private double longitude;
 
     @Builder
-    public MapEntity(long id, double latitude, double longitude) {
+    public MapEntity(long id, String email, double latitude, double longitude) {
         this.id = id;
+        this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
     }
