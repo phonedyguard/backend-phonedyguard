@@ -9,14 +9,12 @@ import com.phonedyguard.core.v1.dto.board.BoardListDto;
 import com.phonedyguard.core.v1.dto.board.BoardPostDto;
 import com.phonedyguard.core.v1.dto.board.BoardUpdateDto;
 import com.phonedyguard.core.entity.BoardEntity;
-import com.phonedyguard.core.v1.dto.request.UserRequestDto;
 import com.phonedyguard.core.v1.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -34,6 +32,7 @@ public class BoardService {
     private final JwtTokenProvider jwtTokenProvider;
 
 
+    //게시판 목록
     @Transactional
     public List<BoardListDto> getBoardlist() {
         List<BoardEntity> boardEntities = boardRepository.findAll();
@@ -41,6 +40,7 @@ public class BoardService {
 
         for ( BoardEntity boardEntity : boardEntities) {
             BoardListDto boardListDto = BoardListDto.builder()
+                            .email(boardEntity.getEmail())
                             .title(boardEntity.getTitle())
                             .number(boardEntity.getNumber())
                             .build();
@@ -49,19 +49,21 @@ public class BoardService {
         return boardDtoList;
     }
 
+    //게시판 상세조회
     @Transactional
     public BoardPostDto getPost(Long number){
-
         Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(number);
         BoardEntity boardEntity = boardEntityWrapper.get();
 
         BoardPostDto boardPostDto = BoardPostDto.builder()
+                .email(boardEntity.getEmail())
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
                 .build();
         return boardPostDto;
     }
 
+    //게시판 저장
     @Transactional
     public ResponseEntity<?> savePost(HttpServletRequest request, BoardDto boardDto) {
 
@@ -83,12 +85,36 @@ public class BoardService {
         return response.success("게시글 작성 성공");
     }
 
+    //게시판 삭제
     @Transactional
-    public void deletePost(Long number){
-        boardRepository.deleteById(number);
+    public ResponseEntity<?> deleteBoard(HttpServletRequest request, BoardUpdateDto boardUpdateDto, long number){
+        // Header에서 token 값 추출
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        String email = authentication.getName();
+
+        Optional<BoardEntity> boardEntity = boardRepository.findById(number);
+        BoardEntity boardUpdate = boardEntity.get();
+        String my_email = boardUpdate.getEmail();
+        log.info(email + " : " + my_email);
+        if (email.equals(my_email)){
+            boardRepository.deleteById(number);
+            return response.success("게시판 삭제");
+        }
+        else{
+            return response.fail("게시판 삭제 실패",HttpStatus.BAD_REQUEST);
+        }
+
     }
 
-
+    //게시판 수절
+    @Transactional
     public ResponseEntity<?> updateBoard(HttpServletRequest request, BoardUpdateDto boardUpdateDto, long number){
         // Header에서 token 값 추출
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
@@ -114,15 +140,5 @@ public class BoardService {
             return response.fail("게시판 실패",HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @Transactional
-//    public int update(long number, final BoardUpdateDto dto){
-//        Optional<BoardEntity> boardEntity = boardRepository.findById(number);
-//        BoardEntity boardUpdate = boardEntity.get();
-//        boardUpdate.setContent(dto.getContent());
-//        boardUpdate.setTitle(dto.getTitle());
-//        boardRepository.save(boardUpdate);
-//        return 1;
-//    }
 
 }

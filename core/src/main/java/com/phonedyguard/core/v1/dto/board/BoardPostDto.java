@@ -8,13 +8,13 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class BoardPostDto {
-//    private  String id;
+    private String email;
     private String title;
     private String content;
 
     public BoardEntity toEntity(){
         BoardEntity board_Entity = BoardEntity.builder()
-//                .id(id)
+                .email(email)
                 .title(title)
                 .content(content)
                 .build();
@@ -22,7 +22,8 @@ public class BoardPostDto {
     }
 
     @Builder
-    public BoardPostDto(String title, String content) {
+    public BoardPostDto(String email, String title, String content) {
+        this.email = email;
         this.title = title;
         this.content = content;
     }
