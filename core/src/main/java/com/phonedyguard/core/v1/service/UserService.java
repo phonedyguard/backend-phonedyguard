@@ -48,6 +48,7 @@ public class UserService {
         // token 값으로 정보 추출
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
         // 아이디로 user 정보 DB에서 추출
+
         Users user = userRepository.findByEmail(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
 
