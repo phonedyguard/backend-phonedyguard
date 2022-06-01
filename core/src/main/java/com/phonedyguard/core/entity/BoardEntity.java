@@ -14,8 +14,8 @@ import javax.persistence.*;
 @Table(name = "board")
 public class BoardEntity {
 
-//    @Column(length = 100, nullable = false)
-//    private String id;
+    @Column(length = 100, nullable = false)
+    private String email;
 
     @Column(length = 300, nullable = false)
     private String content;
@@ -28,8 +28,8 @@ public class BoardEntity {
     private long number;
 
     @Builder
-    public BoardEntity(String content, String title, long number) {
-//        this.id = id;
+    public BoardEntity(String email, String content, String title, long number) {
+        this.email = email;
         this.content = content;
         this.title = title;
         this.number = number;

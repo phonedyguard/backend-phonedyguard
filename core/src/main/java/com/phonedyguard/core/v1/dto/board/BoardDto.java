@@ -7,14 +7,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class BoardDto {
-    //    private String id;
     private String content;
     private String title;
     private long number;
 
     public BoardEntity toEntity(){
         BoardEntity board_Entity = BoardEntity.builder()
-//                .id(id)
                 .content(content)
                 .title(title)
                 .number(number)
@@ -24,7 +22,6 @@ public class BoardDto {
 
     @Builder
     public BoardDto(String content, String title, long number) {
-//        this.id = id;
         this.content = content;
         this.title = title;
         this.number = number;
