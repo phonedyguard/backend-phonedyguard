@@ -12,6 +12,7 @@ import com.phonedyguard.core.entity.BoardEntity;
 import com.phonedyguard.core.v1.dto.request.UserRequestDto;
 import com.phonedyguard.core.v1.repository.BoardRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class BoardService {
     private final BoardRepository boardRepository;
     private final Response response;
@@ -102,7 +104,8 @@ public class BoardService {
         Optional<BoardEntity> boardEntity = boardRepository.findById(number);
         BoardEntity boardUpdate = boardEntity.get();
         String my_email = boardUpdate.getEmail();
-        if (email == my_email){
+        log.info(email + " : " + my_email);
+        if (email.equals(my_email)){
             boardUpdate.setTitle(boardUpdateDto.getTitle());
             boardUpdate.setContent(boardUpdateDto.getContent());
             return response.success("게시판 수정");
