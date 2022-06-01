@@ -1,5 +1,7 @@
 package com.phonedyguard.core.v1.service;
 
+import com.phonedyguard.core.entity.MapEntity;
+import com.phonedyguard.core.entity.Tokens;
 import com.phonedyguard.core.entity.Users;
 import com.phonedyguard.core.enums.Authority;
 import com.phonedyguard.core.jwt.JwtAuthenticationFilter;
@@ -7,6 +9,8 @@ import com.phonedyguard.core.jwt.JwtTokenProvider;
 import com.phonedyguard.core.security.SecurityUtil;
 import com.phonedyguard.core.v1.dto.Response;
 import com.phonedyguard.core.v1.dto.request.UserRequestDto;
+import com.phonedyguard.core.v1.repository.MapRepository;
+import com.phonedyguard.core.v1.repository.TokenRepository;
 import com.phonedyguard.core.v1.repository.UserRepository;
 import com.phonedyguard.core.v1.dto.response.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +27,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -32,6 +39,8 @@ import java.util.concurrent.TimeUnit;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final MapRepository mapRepository;
+    private final TokenRepository tokenRepository;
     private final Response response;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
@@ -112,30 +121,49 @@ public class UserService {
                 .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                 .build();
         userRepository.save(user);
+        MapEntity map_Entity = MapEntity.builder()
+                .email(signUp.getEmail())
+                .latitude(0)
+                .longitude(0)
+                .build();
+        mapRepository.save(map_Entity);
 
         return response.success("회원가입에 성공했습니다.");
     }
 
     public ResponseEntity<?> login(UserRequestDto.Login login) {
+        UserResponseDto.TokenInfo tokenInfo = new UserResponseDto.TokenInfo(null,null,null,null);
+        try {
+            // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
+            // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
+            UsernamePasswordAuthenticationToken authenticationToken = login.toAuthentication();
+            // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
+            // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
 
-        if (userRepository.findByEmail(login.getEmail()).orElse(null) == null) {
-            return response.fail("해당하는 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
+            Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+            // 3. 인증 정보를 기반으로 JWT 토큰 생성
+            tokenInfo = jwtTokenProvider.generateToken(authentication);
+            // 4. RefreshToken Redis 저장 (expirationTime 설정을 통해 자동 삭제 처리)
+            redisTemplate.opsForValue()
+                    .set("RT:" + authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            return response.fail("로그인 실패", HttpStatus.BAD_REQUEST);
         }
 
-        // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
-        // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
-        UsernamePasswordAuthenticationToken authenticationToken = login.toAuthentication();
 
-        // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
-        // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-
-        // 3. 인증 정보를 기반으로 JWT 토큰 생성
-        UserResponseDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
-
-        // 4. RefreshToken Redis 저장 (expirationTime 설정을 통해 자동 삭제 처리)
-        redisTemplate.opsForValue()
-                .set("RT:" + authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
+        // token이 존재하는지 확인
+        if (tokenRepository.findByToken(login.getToken()).isPresent()){
+            log.info("같은 token 존재");
+        }
+        else
+        {
+            Tokens tokens = Tokens.builder()
+                    .email(login.getEmail())
+                    .token(login.getToken())
+                    .build();
+            tokenRepository.save(tokens);
+            log.info("token 저장");
+        }
 
         return response.success(tokenInfo, "로그인에 성공했습니다.", HttpStatus.OK);
     }
