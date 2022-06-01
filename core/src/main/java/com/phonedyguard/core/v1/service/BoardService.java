@@ -1,7 +1,11 @@
 package com.phonedyguard.core.v1.service;
 
+import com.phonedyguard.core.v1.dto.board.BoardDto;
+import com.phonedyguard.core.v1.dto.board.BoardListDto;
+import com.phonedyguard.core.v1.dto.board.BoardPostDto;
+import com.phonedyguard.core.v1.dto.board.BoardUpdateDto;
 import com.phonedyguard.core.entity.BoardEntity;
-import com.phonedyguard.core.v1.dto.request.BoardDto;
+import com.phonedyguard.core.v1.dto.board.BoardDto;
 import com.phonedyguard.core.v1.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,39 +22,52 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public List<BoardDto> getBoardlist() {
+    public List<BoardListDto> getBoardlist() {
         List<BoardEntity> boardEntities = boardRepository.findAll();
-        List<BoardDto> boardDtoList = new ArrayList<>();
+        List<BoardListDto> boardDtoList = new ArrayList<>();
 
         for ( BoardEntity boardEntity : boardEntities) {
-            BoardDto boardDTO = BoardDto.builder()
-                    .content(boardEntity.getContent())
-                    .title(boardEntity.getTitle())
-                    .number(boardEntity.getNumber())
-                    .build();
-
-            boardDtoList.add(boardDTO);
+            BoardListDto boardListDto = BoardListDto.builder()
+                            .title(boardEntity.getTitle())
+                            .number(boardEntity.getNumber())
+                            .build();
+            boardDtoList.add(boardListDto);
         }
         return boardDtoList;
     }
 
     @Transactional
-    public BoardDto getPost(Long number){
+    public BoardPostDto getPost(Long number){
         Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(number);
         BoardEntity boardEntity = boardEntityWrapper.get();
 
-        BoardDto boardDto = BoardDto.builder()
-                .content(boardEntity.getContent())
+        BoardPostDto boardPostDto = BoardPostDto.builder()
                 .title(boardEntity.getTitle())
-                .number(boardEntity.getNumber())
+                .content(boardEntity.getContent())
                 .build();
 
-        return boardDto;
+        return boardPostDto;
     }
+
 
     @Transactional
     public Long savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getNumber();
+    }
+
+    @Transactional
+    public void deletePost(Long number){
+        boardRepository.deleteById(number);
+    }
+
+    @Transactional
+    public int update(long number, final BoardUpdateDto dto){
+        Optional<BoardEntity> boardEntity = boardRepository.findById(number);
+        BoardEntity boardUpdate = boardEntity.get();
+        boardUpdate.setContent(dto.getContent());
+        boardUpdate.setTitle(dto.getTitle());
+        boardRepository.save(boardUpdate);
+        return 1;
     }
 
 }
