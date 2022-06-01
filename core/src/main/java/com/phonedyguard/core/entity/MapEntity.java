@@ -18,8 +18,6 @@ public class MapEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    private String email;
-
     @Column(length = 100, nullable = false)
     private String email;
 
@@ -30,12 +28,8 @@ public class MapEntity {
     private double longitude;
 
     @Builder
-<<<<<<< HEAD
     public MapEntity(String email, double latitude, double longitude) {
-=======
-    public MapEntity(long id, String email, double latitude, double longitude) {
         this.id = id;
->>>>>>> develop
         this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
