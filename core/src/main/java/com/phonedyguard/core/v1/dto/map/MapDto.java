@@ -12,15 +12,6 @@ public class MapDto {
     private double latitude;
     private double longitude;
 
-    public MapEntity toEntity(){
-        MapEntity map_Entity = MapEntity.builder()
-                .id(id)
-                .latitude(latitude)
-                .longitude(longitude)
-                .build();
-        return map_Entity;
-    }
-
     @Builder
     public MapDto(long id, double latitude, double longitude) {
         this.id = id;

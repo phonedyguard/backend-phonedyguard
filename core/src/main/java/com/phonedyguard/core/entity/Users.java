@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @Setter
 @Getter
 @Entity
+@ToString
 public class Users extends BaseTime implements UserDetails {
 
     @Id
@@ -32,7 +33,6 @@ public class Users extends BaseTime implements UserDetails {
     private String sex;
 
     private String phone;
-
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)

@@ -41,9 +41,9 @@ public class MapService {
     }
 
 
-    @Transactional
-    public Long savePosition(MapDto mapDto) {
-        return mapRepository.save(mapDto.toEntity()).getId();
-    }
+//    @Transactional
+//    public Long savePosition(MapDto mapDto) {
+//        return mapRepository.save(mapDto.toEntity()).getId();
+//    }
 
 }
