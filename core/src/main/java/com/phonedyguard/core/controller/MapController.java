@@ -9,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -63,4 +60,9 @@ public class MapController {
         return new ResponseEntity<List>(mapSafeDtoList, HttpStatus.OK);
     }
 
+    @GetMapping("/")
+    @RequestMapping(value="/https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",method = {RequestMethod.POST})
+    public void test(@RequestParam("startX")float startX){
+        System.out.println("쉬발람" + startX);
+    }
 }

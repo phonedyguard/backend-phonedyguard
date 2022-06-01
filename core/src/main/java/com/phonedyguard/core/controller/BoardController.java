@@ -44,13 +44,19 @@ public class BoardController {
     }
 
     @GetMapping("/board/{number}")
-    public BoardPostDto findById(@PathVariable Long number){
-        return boardService.getPost(number);
+    public BoardPostDto selectboard(HttpServletRequest request,@PathVariable Long number){
+        return boardService.getPost(request, number);
     }
 
+//    @GetMapping("/board/{number}")
+//    public ResponseEntity<?> selectboard(HttpServletRequest request, @RequestBody BoardPostDto boardPostDto, @PathVariable("number") Long number){
+//        return boardService.getPost(request, boardPostDto, number);
+//    }
+
+
     @DeleteMapping("/board/{number}")
-    public ResponseEntity<?> deleteBoard(HttpServletRequest request, @RequestBody BoardUpdateDto boardUpdateDto, @PathVariable("number") Long number){
-        return boardService.deleteBoard(request, boardUpdateDto, number);
+    public ResponseEntity<?> deleteBoard(HttpServletRequest request, @RequestBody BoardDto boardDto, @PathVariable("number") Long number){
+        return boardService.deleteBoard(request, boardDto, number);
     }
 
     @PutMapping("/board/{number}")
