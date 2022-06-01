@@ -17,6 +17,9 @@ spring:
   redis:
     host: 3.36.109.233
     port: 6379
+server:
+  port: 8089
+
 
 
 jwt:
