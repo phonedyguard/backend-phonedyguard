@@ -111,7 +111,7 @@ public class BoardService {
 
     //게시판 삭제
     @Transactional
-    public ResponseEntity<?> deleteBoard(HttpServletRequest request, BoardDto boardDto, long number){
+    public ResponseEntity<?> deleteBoard(HttpServletRequest request, long number){
         // Header에서 token 값 추출
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
         if (!jwtTokenProvider.validateToken(token))
@@ -135,7 +135,6 @@ public class BoardService {
         else{
             return response.fail("게시판 삭제 실패",HttpStatus.BAD_REQUEST);
         }
-
     }
 
     //게시판 수정

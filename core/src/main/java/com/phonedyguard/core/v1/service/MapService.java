@@ -15,12 +15,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -31,23 +33,6 @@ public class MapService {
     private final JwtTokenProvider jwtTokenProvider;
 
 
-
-
-    @Transactional
-    public List<MapSafeDto> getMaplist() {
-        List<MapSafeEntity> mapSafeEntities = mapSafeRepository.findAll();
-        List<MapSafeDto> mapSafeDtoList = new ArrayList<>();
-
-        for ( MapSafeEntity mapSafeEntity : mapSafeEntities) {
-            MapSafeDto mapSafeDTO = MapSafeDto.builder()
-                    .safe_latitude(mapSafeEntity.getSafe_latitude())
-                    .safe_longitude(mapSafeEntity.getSafe_longitude())
-                    .build();
-            mapSafeDtoList.add(mapSafeDTO);
-        }
-        return mapSafeDtoList;
-    }
-
     @Transactional
     public ResponseEntity<?> saveMyPosition(HttpServletRequest request, MapDto mapDto) {
 
@@ -56,23 +41,26 @@ public class MapService {
         {
             return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
         }
+
         // token 값으로 정보 추출
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
         String email = authentication.getName();
-
-        MapEntity mapEntity = new MapEntity();
-        mapEntity.setEmail(mapEntity.getEmail());
-
-//
-//        BoardEntity boardEntity = new BoardEntity();
-//        boardEntity.setEmail(email);
-//        boardEntity.setContent(boardDto.getContent());
-//        boardEntity.setTitle(boardDto.getTitle());
-//        boardRepository.save(boardEntity);
-        return response.success("게시글 작성 성공");
+        Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
+        MapEntity myPosition = mapEntity.get();
+        String my_email = myPosition.getEmail();
+        if(my_email.equals(null)){
+            MapEntity map = new MapEntity();
+            map.setEmail(email);
+            map.setLatitude(map.getLatitude());
+            map.setLongitude(map.getLongitude());
+            mapRepository.save(map);
+        }
+        else{
+            myPosition.setLatitude(mapDto.getLatitude());
+            myPosition.setLongitude(mapDto.getLongitude());
+        }
+        return response.success("현재위치 저장 성공");
     }
-
 
 
     @Transactional
@@ -81,9 +69,5 @@ public class MapService {
     }
 
 
-//    @Transactional
-//    public Long savePosition(MapDto mapDto) {
-//        return mapRepository.save(mapDto.toEntity()).getId();
-//    }
 
 }
