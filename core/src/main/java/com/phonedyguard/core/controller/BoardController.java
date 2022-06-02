@@ -48,15 +48,9 @@ public class BoardController {
         return boardService.getPost(request, number);
     }
 
-//    @GetMapping("/board/{number}")
-//    public ResponseEntity<?> selectboard(HttpServletRequest request, @RequestBody BoardPostDto boardPostDto, @PathVariable("number") Long number){
-//        return boardService.getPost(request, boardPostDto, number);
-//    }
-
-
     @DeleteMapping("/board/{number}")
-    public ResponseEntity<?> deleteBoard(HttpServletRequest request, @RequestBody BoardDto boardDto, @PathVariable("number") Long number){
-        return boardService.deleteBoard(request, boardDto, number);
+    public ResponseEntity<?> deleteBoard(HttpServletRequest request, @PathVariable("number") Long number){
+        return boardService.deleteBoard(request,number);
     }
 
     @PutMapping("/board/{number}")

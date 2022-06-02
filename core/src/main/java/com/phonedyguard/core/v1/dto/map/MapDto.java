@@ -9,12 +9,14 @@ import lombok.*;
 @NoArgsConstructor
 public class MapDto {
     private long id;
+    private String email;
     private double latitude;
     private double longitude;
 
     @Builder
-    public MapDto(long id, double latitude, double longitude) {
+    public MapDto(long id,String email, double latitude, double longitude) {
         this.id = id;
+        this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
     }
