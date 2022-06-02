@@ -1,6 +1,5 @@
 package com.phonedyguard.core.v1.dto.map;
 
-import com.phonedyguard.core.entity.MapEntity;
 import lombok.*;
 
 @Getter

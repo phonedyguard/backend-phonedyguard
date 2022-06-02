@@ -1,19 +1,16 @@
 package com.phonedyguard.core.controller;
 
-import com.phonedyguard.core.v1.dto.board.BoardDto;
 import com.phonedyguard.core.v1.dto.map.MapDto;
-import com.phonedyguard.core.v1.dto.map.MapSafeDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
 import com.phonedyguard.core.v1.repository.MapSafeRepository;
 import com.phonedyguard.core.v1.service.MapService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -40,11 +37,18 @@ public class MapController {
         return mapService.saveMyPosition(request, mapDto);
     }
 
-    @GetMapping("ajax2")
-    public String ajax(@RequestParam Map<String, Object> param) {
-        String id = (String) param.get("startName");
-        System.out.println("ajax start!");
-        System.out.println(id);
-        return "ajax";
+//    @GetMapping("/ajax")
+//    public String ajax(@RequestParam Map<String, Object> param) {
+//
+//        String id = (String) param.get("startName");
+//        System.out.println("ajax start!");
+//        System.out.println(id);
+//        return "map.html";
+//    }
+
+    @GetMapping("/ajax")
+    public String list(Model model){
+        model.addAttribute("list");
+        return "ajax.jsp";
     }
 }
