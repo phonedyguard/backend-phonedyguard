@@ -1,12 +1,9 @@
 package com.phonedyguard.core.v1.service;
 
-import com.phonedyguard.core.entity.BoardEntity;
 import com.phonedyguard.core.entity.MapEntity;
-import com.phonedyguard.core.entity.MapSafeEntity;
 import com.phonedyguard.core.jwt.JwtAuthenticationFilter;
 import com.phonedyguard.core.jwt.JwtTokenProvider;
 import com.phonedyguard.core.v1.dto.Response;
-import com.phonedyguard.core.v1.dto.board.BoardDto;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.MapSafeDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
@@ -15,13 +12,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -67,7 +61,5 @@ public class MapService {
     public Long saveSaferoutes(MapSafeDto mapSafeDto) {
         return mapSafeRepository.save(mapSafeDto.toEntity()).getId();
     }
-
-
 
 }
