@@ -1,11 +1,13 @@
 package com.phonedyguard.core.v1.service;
 
 import com.phonedyguard.core.entity.MapEntity;
+import com.phonedyguard.core.entity.MapSafeEntity;
 import com.phonedyguard.core.jwt.JwtAuthenticationFilter;
 import com.phonedyguard.core.jwt.JwtTokenProvider;
 import com.phonedyguard.core.v1.dto.Response;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.MapSafeDto;
+import com.phonedyguard.core.v1.dto.request.RouteDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
 import com.phonedyguard.core.v1.repository.MapSafeRepository;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -56,10 +59,9 @@ public class MapService {
         return response.success("현재위치 저장 성공");
     }
 
-
-    @Transactional
-    public Long saveSaferoutes(MapSafeDto mapSafeDto) {
-        return mapSafeRepository.save(mapSafeDto.toEntity()).getId();
+    public ResponseEntity<?> saveSaferoutes(List<MapSafeEntity> mapSafeEntities) {
+        mapSafeRepository.saveAll(mapSafeEntities);
+        return response.success("안심경로 저장");
     }
 
 }

@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>simpleMap</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script
             src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx491b556af3b746c28a219e091337e03f"></script>
-    <script type="text/javascript">
+    <script th:inline="javascript">
 	var map;
 	var marker_s, marker_e, marker_p1, marker_p2;
 	var totalMarkerArr = [];
@@ -16,11 +16,18 @@
 	var geometry = [];
 	var lat = [];
 	var lng = [];
+    var email = [[${email}]];
+    var startX = [[${startX}]];
+    var startY = [[${startY}]];
+    var endX = [[${endX}]];
+    var endY = [[${endY}]];
+
+
 
 	function initTmap() {
 		// 1. 지도 띄우기
 		map = new Tmapv2.Map("map_div", {
-			center : new Tmapv2.LatLng(35.111012, 128.958371),
+			center : new Tmapv2.LatLng([[${startX}]], [[${startY}]]),
 			width : "100%",
 			height : "400px",
 			zoom : 15,
@@ -32,22 +39,20 @@
 		// 시작
 		marker_s = new Tmapv2.Marker(
 				{
-					position : new Tmapv2.LatLng(35.1455863, 129.0366489),
+					position : new Tmapv2.LatLng([[${startX}]], [[${startY}]]),
 					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_s.png",
 					iconSize : new Tmapv2.Size(24, 38),
 					map : map
 				});
-
 		// 도착
 		marker_e = new Tmapv2.Marker(
 				{
-					position : new Tmapv2.LatLng(35.114454,  128.959404),
+					position : new Tmapv2.LatLng([[${endX}]],  [[${endY}]]),
 					icon : "http://tmapapi.sktelecom.com/upload/tmap/marker/pin_r_m_e.png",
 					iconSize : new Tmapv2.Size(24, 38),
 					map : map
 				});
-
-		// 3. 경로탐색 API 사용요청
+        // 3. 경로탐색 API 사용요청
 		$
 				.ajax({
 					method : "POST",
@@ -55,10 +60,10 @@
 					async : false,
 					data : {
 						"appKey" : "l7xx491b556af3b746c28a219e091337e03f",
-						"startX" : "129.0366489",
-						"startY" : "35.1455863",
-						"endX" : "128.959404",
-						"endY" : "35.114454",
+						"startX" : [[${startY}]],
+						"startY" : [[${startX}]],
+						"endX" : [[${endY}]],
+						"endY" : [[${endX}]],
 						"reqCoordType" : "WGS84GEO",
 						"resCoordType" : "EPSG3857",
 						"startName" : "출발지",
@@ -177,6 +182,34 @@
 					}
 				});
 
+
+        var f = document.createElement("form"); // form 엘리멘트 생성
+        f.setAttribute("method","post"); // method 속성을 post로 설정
+        f.setAttribute("action","/home/route"); // submit했을 때 무슨 동작을 할 것인지 설정
+        document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가
+
+        var i = document.createElement("input"); // input 엘리멘트 생성
+        i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정
+        i.setAttribute("name","email"); // name 속성을 'm_nickname'으로 설정
+        i.setAttribute("value",email); // value 속성을 neilong에 담겨있는 값으로 설정
+        f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+
+        var i2 = document.createElement("input"); // input 엘리멘트 생성
+        i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정
+        i2.setAttribute("name","lat[]"); // name 속성을 'm_nickname'으로 설정
+        i2.setAttribute("value",lat); // value 속성을 neilong에 담겨있는 값으로 설정
+        f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
+
+
+        var i3 = document.createElement("input"); // input 엘리멘트 생성
+        i3.setAttribute("type","hidden"); // type 속성을 hidden으로 설정
+        i3.setAttribute("name","lng[]"); // name 속성을 'm_nickname'으로 설정
+        i3.setAttribute("value",lng); // value 속성을 neilong에 담겨있는 값으로 설정
+        f.appendChild(i3); // form 엘리멘트에 input 엘리멘트 추가
+
+
+
+        f.submit(); // form 태그 서브밋 실행
 	}
 
 
@@ -202,14 +235,63 @@
 		console.log("lat :" + lat[i] +"\n lng" + lng[i]);
 	}
 
+	    // var form = document.createElement('form');
+	    // form.setAttribute('method','post');
+	    // form.setAttribute('action', '/home/route');
+	    // document.charset="utf-8";
+	    // var hiddenField = document.createElement('input');
+	    // hiddenField.setAttribute('type','hidden'); // 값 입력
+        // hiddenField.setAttribute('name','lat[]');
+        // hiddenField.setAttribute('value', lat);
+        // form.appendChild(hiddenField);
+        // document.body.appendChild(form);
+        // form.submit();
+
+    function sendPost(){
+        var f = document.createElement("form"); // form 엘리멘트 생성
+        f.setAttribute("method","post"); // method 속성을 post로 설정
+        f.setAttribute("action","/home/route"); // submit했을 때 무슨 동작을 할 것인지 설정
+        document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가
+
+        var i = document.createElement("input"); // input 엘리멘트 생성
+        i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정
+        i.setAttribute("name","lat[]"); // name 속성을 'm_nickname'으로 설정
+        i.setAttribute("value",lat); // value 속성을 neilong에 담겨있는 값으로 설정
+        alert(lat);
+        f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+
+        i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정
+        i.setAttribute("name","lng[]"); // name 속성을 'm_nickname'으로 설정
+        i.setAttribute("value",lng); // value 속성을 neilong에 담겨있는 값으로 설정
+        alert(lng);
+        f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+
+        f.submit(); // form 태그 서브밋 실행
+    }
 
 
-</script>
+
+
+
+
+    </script>
 </head>
 <body onload="initTmap();">
+<div onload="sendPost();">
 
+</div>
+<!--<div id="latData">-->
+<!--    <script>-->
+<!--        var sum;-->
+<!--        document.getElementById("latData").innerHTML=sum;-->
+<!--    </script>-->
+<!--    <form action="/home/route" method="post">-->
+<!--        <input id="lat" name="lat" value="${latData};"/>-->
+<!--        <input id="lng" name="lng" value="${lng};"/>-->
+<!--        <button type="submit">제출</button>-->
+<!--    </form>-->
+<!--</div>-->
 
-hisadasd
 <!-- 190430 기존 지도를 모두 이미지 처리 위해 주석 처리 S -->
 <div id="map_wrap" class="map_wrap3">
     <div id="map_div"></div>

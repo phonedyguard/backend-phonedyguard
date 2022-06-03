@@ -52,7 +52,7 @@ public class UserService {
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
         if (!jwtTokenProvider.validateToken(token))
         {
-            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         // token 값으로 정보 추출
         Authentication authentication = jwtTokenProvider.getAuthentication(token);

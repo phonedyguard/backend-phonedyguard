@@ -51,6 +51,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	// jsp
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl'
+
 	// nurigo
 	compileOnly group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 
