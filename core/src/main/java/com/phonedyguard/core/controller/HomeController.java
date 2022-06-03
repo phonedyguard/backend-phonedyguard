@@ -67,7 +67,7 @@ public class HomeController {
 //        return "map";
 //    }
 
-    @PostMapping("/maps/indices")
+    @PostMapping("/maps/routes")
     public String hometo(@RequestBody MapRequestDto mapRequestDto, Model model, String email) {
         log.info("hometo");
         email = "jinyeong";
