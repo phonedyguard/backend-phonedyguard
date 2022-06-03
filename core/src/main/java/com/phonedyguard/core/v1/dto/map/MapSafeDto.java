@@ -9,22 +9,11 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class MapSafeDto {
-    private long id;
     private double safe_latitude;
     private double safe_longitude;
 
-    public MapSafeEntity toEntity(){
-        MapSafeEntity mapSafeEntity = MapSafeEntity.builder()
-                .id(id)
-                .safe_latitude(safe_latitude)
-                .safe_longitude(safe_longitude)
-                .build();
-        return mapSafeEntity;
-    }
-
     @Builder
-    public MapSafeDto(long id, double safe_latitude, double safe_longitude) {
-        this.id = id;
+    public MapSafeDto(double safe_latitude, double safe_longitude) {
         this.safe_latitude = safe_latitude;
         this.safe_longitude = safe_longitude;
     }

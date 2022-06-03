@@ -46,9 +46,6 @@ public class MapController {
 //        return "map.html";
 //    }
 
-    @GetMapping("/ajax")
-    public String list(Model model){
-        model.addAttribute("list");
-        return "ajax.jsp";
-    }
+
+
 }

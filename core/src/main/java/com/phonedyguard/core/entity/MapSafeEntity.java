@@ -18,6 +18,11 @@ public class MapSafeEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
+
+
+    @Column(length = 100, nullable = false)
+    private String email;
+
     @Column(length = 255, nullable = false)
     private double safe_latitude;
 
@@ -25,8 +30,9 @@ public class MapSafeEntity {
     private double safe_longitude;
 
     @Builder
-    public MapSafeEntity(long id, double safe_latitude, double safe_longitude) {
+    public MapSafeEntity(long id, String email, double safe_latitude, double safe_longitude) {
         this.id = id;
+        this.email = email;
         this.safe_latitude = safe_latitude;
         this.safe_longitude = safe_longitude;
     }

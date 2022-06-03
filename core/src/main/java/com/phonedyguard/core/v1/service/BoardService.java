@@ -31,7 +31,6 @@ public class BoardService {
     private final Response response;
     private final JwtTokenProvider jwtTokenProvider;
 
-
     //게시판 목록
     @Transactional
     public List<BoardListDto> getBoardlist() {

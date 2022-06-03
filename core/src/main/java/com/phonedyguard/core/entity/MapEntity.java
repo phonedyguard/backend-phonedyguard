@@ -28,7 +28,7 @@ public class MapEntity {
     private double longitude;
 
     @Builder
-    public MapEntity(String email, double latitude, double longitude) {
+    public MapEntity(long id, String email, double latitude, double longitude) {
         this.id = id;
         this.email = email;
         this.latitude = latitude;
