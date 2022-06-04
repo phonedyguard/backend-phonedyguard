@@ -99,7 +99,11 @@ public class Response {
                 .massage(msg)
                 .error(Collections.emptyList())
                 .build();
-        return ResponseEntity.ok(body);
+        return ResponseEntity.status(status.BAD_REQUEST).body(body);
+    }
+
+    public ResponseEntity<?> fail(String msg) {
+        return fail(Collections.emptyList(), msg, HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -130,6 +134,6 @@ public class Response {
                 .massage("")
                 .error(errors)
                 .build();
-        return ResponseEntity.ok(body);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 }
