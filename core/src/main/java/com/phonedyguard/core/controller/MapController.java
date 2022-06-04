@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class MapController {
 
 
     @PostMapping(value = "/maps/indices")
-    public ResponseEntity<?> indices(HttpServletRequest request, @RequestBody MapDto mapDto) {
+    public ResponseEntity<?> indices(HttpServletRequest request, @RequestBody MapDto mapDto) throws IOException {
         return mapService.saveMyPosition(request, mapDto);
     }
 

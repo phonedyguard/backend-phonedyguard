@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,7 @@ public class MapService {
     private final TokenRepository tokenRepository;
 
 
-    public ResponseEntity<?> saveMyPosition(HttpServletRequest request, MapDto mapDto) {
+    public ResponseEntity<?> saveMyPosition(HttpServletRequest request, MapDto mapDto) throws IOException {
 
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
         if (!jwtTokenProvider.validateToken(token)) {
@@ -110,10 +111,11 @@ public class MapService {
         return ResponseEntity.status(HttpStatus.OK).body(mapResponseDto);
     }
 
-    public void checkPosition(String email) {
+    public void checkPosition(String email) throws IOException {
         Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
 
 
+        double range = 0.0002;
         MapEntity myPosition = mapEntity.get();
         double my_Latitude = myPosition.getLatitude();
         double my_Longitude = myPosition.getLongitude();
@@ -138,21 +140,24 @@ public class MapService {
             safeLongitudes.add(mapSafeEntities.getSafe_longitude());
         }
 
+//        for (int i = 0; i < mapSafeEntity.size(); i++) {
+//            System.out.println("latlng" + mapSafeEntity.get(i).getSafe_latitude() + ", " + mapSafeEntity.get(i).getSafe_longitude() + mapSafeEntity.size());
+//        }
         //현재 위치 기준 안심경로의 근사값을 구해줌
         double latmin = Double.MAX_VALUE;
         double longmin = Double.MAX_VALUE;
         int nearData = 0;
-        int alarm = 0;
+        int flag = 0;
+        boolean alarm = false;
+
 
         //근사값까지 검사를 끝냈다면 또 다른 근사값을 계산하여 배열이
-        for (int i = nearData; i < safeLatitudes.size(); i++) {
-            double a = Math.abs(safeLatitudes.get(i) - my_Latitude);
-            double b = Math.abs(safeLongitudes.get(i) - my_Longitude);
+        for (int i = nearData; i < mapSafeEntity.size(); i++) {
+            double a = Math.abs(mapSafeEntity.get(i).getSafe_latitude() - my_Latitude);
+            double b = Math.abs(mapSafeEntity.get(i).getSafe_longitude() - my_Longitude);
             if (latmin > a && longmin > b) {
                 latmin = a; //0.00001
                 longmin = b; //0.00002
-                log.info("latmin: " + latmin);
-                log.info("longmin: " + longmin);
                 nearData = i;
             }
         }
@@ -164,41 +169,45 @@ public class MapService {
             for (int i = nearData - 5; i < nearData; i++) {
                 //현재 위치 - 0.0002 < 안심경로 < 현재위치 + 0.0002 위경도 둘 다 맞을 경우
                 //안심경로이기 때문에 괄호로 묶고 and연산으로 바꿈
-                System.out.println(safeLatitudes.get(i));
-                System.out.println(safeLongitudes.get(i));
-                System.out.println(my_Latitude);
-                System.out.println(my_Longitude);
-                if ((my_Latitude - 0.0002 <= safeLatitudes.get(i) && safeLatitudes.get(i) <= my_Latitude + 0.0002)
-                        && (my_Longitude - 0.0002 <= safeLongitudes.get(i) && safeLongitudes.get(i) <= my_Longitude + 0.0002)) {
+                if(i == mapSafeEntity.size())
+                    break;
+                if ((my_Latitude - range <= mapSafeEntity.get(i).getSafe_latitude() && mapSafeEntity.get(i).getSafe_latitude() <= my_Latitude + range)
+                        && (my_Longitude - range <= mapSafeEntity.get(i).getSafe_longitude() && mapSafeEntity.get(i).getSafe_longitude() <= my_Longitude + range)) {
                     System.out.println("안심경로");
-                    alarm += 1;
+                    alarm = true;
                     break;
                 }
             }
-            nearData = temp; //neardata값을 임의로 바꿨기 때문에 다시 원래 값으로
-        } else {
+
+        }
+
+
+
+        else {
             //근사값 +-5로 비교
             for (int i = nearData - 5; i < nearData + 5; i++) {
-                System.out.println(safeLatitudes.get(i));
-                System.out.println(safeLongitudes.get(i));
-                System.out.println(my_Latitude);
-                System.out.println(my_Longitude);
-                if ((my_Latitude - 0.0002 <= safeLatitudes.get(i) && safeLatitudes.get(i) <= my_Latitude + 0.0002)
-                        && (my_Longitude - 0.0002 <= safeLongitudes.get(i) && safeLongitudes.get(i) <= my_Longitude + 0.0002)) {
+                if(i == mapSafeEntity.size())
+                    break;
+                if ((my_Latitude - range <= mapSafeEntity.get(i).getSafe_latitude() && mapSafeEntity.get(i).getSafe_latitude() <= my_Latitude + range)
+                        && (my_Longitude - range <= mapSafeEntity.get(i).getSafe_longitude() && mapSafeEntity.get(i).getSafe_longitude() <= my_Longitude + range)) {
                     System.out.println("안심경로");
-                    alarm += 1;
+                    alarm = true;
                     break;
                 }
             }
         }
-        Optional<List<Tokens>> tokens = tokenRepository.findAllByEmail(email);
-        if (alarm == 0) {
-            log.info("안심경로 이탈 알림 보내기!!!!");
+
+        if(!alarm)
+        {
+            System.out.println("안심경로이탈");
+
+            Optional<List<Tokens>> tokens = tokenRepository.findAllByEmail(email);
             for(int i=0; i<tokens.get().size(); i++)
             {
-//                tokens()
+                log.info(tokens.get().get(i).getToken());
+                firebaseCloudMessageService.sendMessageTo(tokens.get().get(i).getToken(), "안심경로 이탈", "피보호자가 안심경로를 이탈하였습니다");
             }
-//            firebaseCloudMessageService.sendMessageTo(token, "안심경로 이탈", "피보호자가 안심경로를 이탈하였습니다");
+
         }
     }
 }
