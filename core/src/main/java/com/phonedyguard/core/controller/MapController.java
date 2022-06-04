@@ -3,6 +3,7 @@ package com.phonedyguard.core.controller;
 import com.phonedyguard.core.jwt.JwtAuthenticationFilter;
 import com.phonedyguard.core.jwt.JwtTokenProvider;
 import com.phonedyguard.core.v1.dto.Response;
+import com.phonedyguard.core.v1.dto.board.BoardPostDto;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.Routes;
 import com.phonedyguard.core.v1.dto.request.MapRequestDto;
@@ -47,4 +48,11 @@ public class MapController {
     public ResponseEntity<?> home(@RequestBody List<Routes> routes, HttpServletRequest request) {
         return mapService.saveSaferoutes(routes, request);
     }
+
+    @GetMapping("/maps/indices")
+    public ResponseEntity<?> selectboard(HttpServletRequest request){
+        return mapService.getPosition(request);
+    }
+
+
 }
