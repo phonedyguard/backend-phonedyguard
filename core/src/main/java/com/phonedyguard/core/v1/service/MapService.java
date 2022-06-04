@@ -9,6 +9,7 @@ import com.phonedyguard.core.v1.dto.Response;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.dto.map.MapSafeDto;
 import com.phonedyguard.core.v1.dto.map.Routes;
+import com.phonedyguard.core.v1.dto.response.MapResponseDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
 import com.phonedyguard.core.v1.repository.MapSafeRepository;
 import com.phonedyguard.core.v1.repository.TokenRepository;
@@ -102,10 +103,11 @@ public class MapService {
         String email = authentication.getName();
         Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
 
-        MapEntity getPosition = mapEntity.get();
-        getPosition.getLatitude();
-        getPosition.getLongitude();
-        return response.success("현재위치 보내기");
+        MapResponseDto mapResponseDto = MapResponseDto.builder()
+                .latitude(mapEntity.get().getLatitude())
+                .longitude(mapEntity.get().getLongitude())
+                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(mapResponseDto);
     }
 
     public void checkPosition(String email) {
