@@ -2,7 +2,6 @@ package com.phonedyguard.core.controller;
 
 
 
-import com.phonedyguard.core.jwt.JwtTokenProvider;
 import com.phonedyguard.core.lib.Helper;
 import com.phonedyguard.core.v1.dto.Response;
 import com.phonedyguard.core.v1.dto.request.UserRequestDto;
@@ -24,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class UserController {
 
-    private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
     private final Response response;
 
