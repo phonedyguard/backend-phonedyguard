@@ -51,13 +51,13 @@ public class BoardService {
     //게시판 상세조회
 
     @Transactional
-    public BoardPostDto getPost(HttpServletRequest request, Long number){
+    public ResponseEntity<?> getPost(HttpServletRequest request, Long number){
         Optional<BoardEntity> boardEntity = boardRepository.findById(number);
         BoardEntity boardPost = boardEntity.get();
         String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
         if (!jwtTokenProvider.validateToken(token))
         {
-            System.out.println("토큰 실패");
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
         }
         // token 값으로 정보 추출
         Authentication authentication = jwtTokenProvider.getAuthentication(token);
@@ -72,7 +72,7 @@ public class BoardService {
                     .content(boardPost.getContent())
                     .check("W")
                     .build();
-            return boardPostDto;
+            return response.success(boardPostDto);
         }
         else{
             BoardPostDto boardPostDto = BoardPostDto.builder()
@@ -81,9 +81,8 @@ public class BoardService {
                     .content(boardPost.getContent())
                     .check("R")
                     .build();
-            return boardPostDto;
+            return response.success(boardPostDto);
         }
-
     }
 
     //게시판 저장

@@ -44,7 +44,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{number}")
-    public BoardPostDto selectboard(HttpServletRequest request,@PathVariable Long number){
+    public ResponseEntity<?> selectboard(HttpServletRequest request,@PathVariable Long number){
         return boardService.getPost(request, number);
     }
 

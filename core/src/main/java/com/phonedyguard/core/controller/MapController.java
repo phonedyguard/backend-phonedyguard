@@ -1,5 +1,6 @@
 package com.phonedyguard.core.controller;
 
+import com.phonedyguard.core.v1.dto.board.BoardPostDto;
 import com.phonedyguard.core.v1.dto.map.MapDto;
 import com.phonedyguard.core.v1.repository.MapRepository;
 import com.phonedyguard.core.v1.repository.MapSafeRepository;
@@ -35,6 +36,11 @@ public class MapController {
     @PostMapping(value = "/maps/indices")
     public ResponseEntity<?> indices(HttpServletRequest request, @RequestBody MapDto mapDto){
         return mapService.saveMyPosition(request, mapDto);
+    }
+
+    @GetMapping("/maps/indices")
+    public ResponseEntity<?> selectboard(HttpServletRequest request){
+        return mapService.getPosition(request);
     }
 
 //    @GetMapping("/ajax")

@@ -61,6 +61,27 @@ public class MapService {
     }
 
 
+    @Transactional
+    public ResponseEntity<?> getPosition(HttpServletRequest request){
+
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token))
+        {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        String email = authentication.getName();
+        Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
+
+        MapEntity getPosition = mapEntity.get();
+        getPosition.getLatitude();
+        getPosition.getLongitude();
+        return response.success("현재위치 보내기");
+    }
+
+    @Transactional
     public void checkPosition(String email) {
 //        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
 //
