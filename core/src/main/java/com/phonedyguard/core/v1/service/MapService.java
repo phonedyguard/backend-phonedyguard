@@ -108,7 +108,7 @@ public class MapService {
                 .latitude(mapEntity.get().getLatitude())
                 .longitude(mapEntity.get().getLongitude())
                 .build();
-        return ResponseEntity.status(HttpStatus.OK).body(mapResponseDto);
+        return ResponseEntity.ok(mapResponseDto);
     }
 
     public void checkPosition(String email) throws IOException {
