@@ -38,7 +38,7 @@ public class MapController {
     }
 
     @GetMapping("/maps/indices")
-    public ResponseEntity<?> selectboard(HttpServletRequest request){
+    public ResponseEntity<?> checkMyPosition(HttpServletRequest request){
         return mapService.getPosition(request);
     }
 
