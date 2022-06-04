@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @Slf4j
 public class TestController {
+
     @GetMapping("/test1")
     public ResponseEntity test1(){
         return new ResponseEntity<String>("test1 Success", HttpStatus.OK);
@@ -37,6 +38,8 @@ public class TestController {
         testDtoList.add(new TestDto("cc", "ccc"));
         return new ResponseEntity<List>(testDtoList, HttpStatus.OK);
     }
+
+    //test
 
 }
 
