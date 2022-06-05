@@ -37,6 +37,9 @@
 - slack
 - Discord
 
+## 📜ERD
+![erd-digram](https://user-images.githubusercontent.com/77527453/172057917-592bd4b4-91be-46aa-992e-3ff3418bdad6.png)
+
 ## 🔖API 명세서
 [API 명세서](https://tough-jasmine-065.notion.site/API-dd2db44586ed4a0b96f4a6c7a7d8fb88)
 
