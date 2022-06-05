@@ -72,7 +72,7 @@ public class BoardService {
                     .content(boardPost.getContent())
                     .check("W")
                     .build();
-            return response.success(boardPostDto);
+            return ResponseEntity.ok(boardPostDto);
         }
         else{
             BoardPostDto boardPostDto = BoardPostDto.builder()
@@ -81,7 +81,7 @@ public class BoardService {
                     .content(boardPost.getContent())
                     .check("R")
                     .build();
-            return response.success(boardPostDto);
+            return ResponseEntity.ok(boardPostDto);
         }
     }
 
