@@ -151,22 +151,22 @@ public class UserService {
         }
 
 
-        // token이 존재하는지 확인
-//        if (tokenRepository.findByToken(login.getToken()).isPresent()){
-//            log.info("같은 token 존재");
-//        }
-//        else
-//        {
-//            Users users = Users.builder()
-//                    .email(login.getEmail())
-//                    .build();
-//            Tokens tokens = Tokens.builder()
-//                    .users(users)
-//                    .token(login.getToken())
-//                    .build();
-//            tokenRepository.save(tokens);
-//            log.info("token 저장");
-//        }
+//         token이 존재하는지 확인
+        if (tokenRepository.findByToken(login.getToken()).isPresent()){
+            log.info("같은 token 존재");
+        }
+        else
+        {
+            Users users = Users.builder()
+                    .email(login.getEmail())
+                    .build();
+            Tokens tokens = Tokens.builder()
+                    .email(login.getEmail())
+                    .token(login.getToken())
+                    .build();
+            tokenRepository.save(tokens);
+            log.info("token 저장");
+        }
 
         return response.success(tokenInfo, "로그인에 성공했습니다.", HttpStatus.OK);
     }

@@ -33,6 +33,11 @@ public class MapController {
         return mapService.saveMyPosition(request, mapDto);
     }
 
+    @GetMapping("/maps/routes")
+    public ResponseEntity<?> routes(HttpServletRequest request) {
+        return mapService.getSafePosition(request);
+    }
+
     @PostMapping("/maps/routes")
     public ResponseEntity<?> home(@RequestBody List<Routes> routes, HttpServletRequest request) {
         return mapService.saveSaferoutes(routes, request);

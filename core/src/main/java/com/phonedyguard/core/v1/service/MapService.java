@@ -37,6 +37,29 @@ public class MapService {
     private final FirebaseCloudMessageService firebaseCloudMessageService;
     private final TokenRepository tokenRepository;
 
+    public ResponseEntity<?> getSafePosition(HttpServletRequest request){
+        String token = JwtAuthenticationFilter.resolveToken((HttpServletRequest) request);
+        if (!jwtTokenProvider.validateToken(token)) {
+            return response.fail("accessToken 검증 실패", HttpStatus.BAD_REQUEST);
+        }
+
+        // token 값으로 정보 추출
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        String email = authentication.getName();
+
+
+        Optional<List<MapSafeEntity>> mapSafeEntities;
+        mapSafeEntities = mapSafeRepository.findAllByEmail(email);
+        int size = mapSafeEntities.get().size();
+        MapResponseDto.SafeIndices safeIndices = MapResponseDto.SafeIndices.builder()
+                .start_lat(mapSafeEntities.get().get(0).getSafe_latitude())
+                .start_lon(mapSafeEntities.get().get(0).getSafe_longitude())
+                .end_lat(mapSafeEntities.get().get(size-1).getSafe_latitude())
+                .end_lon(mapSafeEntities.get().get(size-1).getSafe_longitude())
+                .build();
+
+        return ResponseEntity.ok(safeIndices);
+    }
 
     public ResponseEntity<?> saveMyPosition(HttpServletRequest request, MapDto mapDto) throws IOException {
 
@@ -110,7 +133,7 @@ public class MapService {
         String email = authentication.getName();
         Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
 
-        MapResponseDto mapResponseDto = MapResponseDto.builder()
+        MapResponseDto.Indices mapResponseDto = MapResponseDto.Indices.builder()
                 .latitude(mapEntity.get().getLatitude())
                 .longitude(mapEntity.get().getLongitude())
                 .build();
