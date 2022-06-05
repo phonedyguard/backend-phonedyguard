@@ -11,7 +11,7 @@
 |<img src="https://user-images.githubusercontent.com/77527453/170466560-1c01a058-b484-4ca6-aadf-cab34a797798.jpg" width="150" height="150">|<img src="https://user-images.githubusercontent.com/77527453/170468045-97e97e9f-fef0-4096-b46e-339777b4772c.jpg" width="150" height="150">|
 |------|---|
 |jinyeong-afk(송진영)|DuHyeon2(김두현)|
-|- Spring Security, jwt</br>- FirebaseCloudMessaging</br>- 회원 도메인</br>- Aws 서버 및 CICD 구축|- 지도 도메인</br>- 게시판 도메인</br>|
+|- Spring Security, jwt</br>- FirebaseCloudMessaging</br>- 회원 도메인</br>- Aws 서버 및 CICD 구축|- 지도 도메인</br>- 게시판 도메인</br>DB 스키마 설계|
 
 ## ⚒개발 환경
 ### 📚사용 기술 스택
