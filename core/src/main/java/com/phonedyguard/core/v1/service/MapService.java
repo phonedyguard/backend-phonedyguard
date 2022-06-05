@@ -50,7 +50,10 @@ public class MapService {
         String email = authentication.getName();
         Optional<MapEntity> mapEntity = mapRepository.findByEmail(email);
         MapEntity myPosition = mapEntity.get();
+
         String my_email = myPosition.getEmail();
+        log.info("my_email = " + my_email);
+
         if (my_email.equals(null)) {
             MapEntity map = new MapEntity();
             map.setEmail(email);
@@ -58,8 +61,11 @@ public class MapService {
             map.setLongitude(map.getLongitude());
             mapRepository.save(map);
         } else {
+            myPosition.setId(mapEntity.get().getId());
+            myPosition.setEmail(email);
             myPosition.setLatitude(mapDto.getLatitude());
             myPosition.setLongitude(mapDto.getLongitude());
+            mapRepository.save(myPosition);
         }
         checkPosition(email);
         return response.success("현재위치 저장 성공");

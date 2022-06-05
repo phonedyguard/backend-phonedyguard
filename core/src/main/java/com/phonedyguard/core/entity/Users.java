@@ -24,6 +24,7 @@ public class Users extends BaseTime implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @Column(unique = true)
     private String email;
 
     private String password;
@@ -33,6 +34,9 @@ public class Users extends BaseTime implements UserDetails {
     private String sex;
 
     private String phone;
+
+//    @OneToMany(mappedBy="users")
+//    private List<Tokens> tokens = new ArrayList<Tokens>();
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)

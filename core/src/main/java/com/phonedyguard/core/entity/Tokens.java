@@ -2,10 +2,7 @@ package com.phonedyguard.core.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Builder
 @NoArgsConstructor
@@ -19,5 +16,8 @@ public class Tokens {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String email;
+//    @ManyToOne
+//    @JoinColumn(name = "email", referencedColumnName = "email")
+//    private Users users;
     private String token;
 }
